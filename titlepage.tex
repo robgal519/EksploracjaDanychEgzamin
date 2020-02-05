@@ -1,0 +1,38 @@
+
+\makeatletter
+\newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\renewcommand{\maketitle}{\begin{titlepage}
+    \begin{figure}[!htbp]
+      \centering
+      \includegraphics{img/logoAGH}
+    \end{figure}
+    \vspace*{1cm}
+    \begin{center}\small
+    Akademia Górniczo -- Hutnicza\\
+    Wydział Fizyki i Informatyki Stosowanej
+    \end{center}
+    \vspace{2cm}
+    \noindent\linia
+    \begin{center}
+      \LARGE \textsc{\@title}
+    \end{center}
+            \begin{center}
+      \large \textsc{\subtitle}
+      \end{center}
+               
+     \linia
+    \vspace{0.5cm}
+    \begin{flushright}
+    \begin{minipage}{5cm}
+    \textit{\small Autor:}\\
+    \normalsize \textsc{\@author} \par
+    \end{minipage}
+    \vspace{5cm}
+     \end{flushright}
+    \vspace*{\stretch{6}}
+    \begin{center}
+    \@date
+    \end{center}
+  \end{titlepage}%
+}
+\makeatother

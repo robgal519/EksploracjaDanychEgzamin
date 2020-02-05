@@ -1,0 +1,26 @@
+
+\input{documentTemplate.tex}
+
+\title{Tytuł}
+\setSubtitle{\small{Podtytuł}}
+\author{Autor}
+\date{\today}
+
+\input{titlepage.tex}
+
+\begin{document}
+\maketitle
+{
+\setcounter{tocdepth}{3}
+\pagenumbering{roman} 
+\tableofcontents
+\newpage
+\pagenumbering{arabic} 
+}
+
+\section{Pierwszy rozdział}
+
+
+% \bibliography{bibtex.bib}
+% \bibliographystyle{unsrt}
+\end{document}
