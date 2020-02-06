@@ -1,4 +1,4 @@
-\section{Miary (nie) podobieństwa}
+\section{Miary (nie) podobieństwa}\label{sec:metryki}
 Odelgłość elementów $a,b \in X$ jest wartością funkcji $d(a,b)$ nazywanej funkcją odległości takiej że:
 $$
 d:X x X \rightarrow [0,\infty]
@@ -11,10 +11,20 @@ $$
  \end{itemize}
 
 Funkcje odległości:
+
+dla ilości wymiaró równej $1$:
+
+metryka Manhatan ( k = 1) czyli moduł różnicy, lub semimetryka:
+$$
+d(a,b) = (a-b)^2
+$$
+
+dla ilości wymiarów większej niż $1$:
 \begin{itemize}
-    \item \textbf{Norma $L_2$} -- Euklidesowa $$ \sqrt{\sum_{i=1}^k(x_i - y_i)^2} $$
-    \item \textbf{Norma $L_1$} -- Manhattan $$ \sum_{i=1}^k|x_i - y_i|$$
+    \item \textbf{Norma $L_2$} -- Euklidesowa (z wykładu) $$ \sqrt{\sum_{i=1}^k(x_i - y_i)^2} $$
+    \item \textbf{Norma $L_1$} -- Manhattan/taksówkowa (z wykładu) $$ \sum_{i=1}^k|x_i - y_i|$$
     \item \textbf{Norma $L_{\infty}$} -- max z wymiarów $$ max_{i=1}^k |x_i-y_i| $$ 
+    \item semimetryka -- ( z wykładu) $$ d(a,b) = \sum_{i=1}^k (a_i-b_i)^2$$
     \item Odległość Mińkowskiego $$ (\sum_{i=1}^k(|x_i-y_i)^q)^{\frac{1}{q}} $$
     \item Odległość Canberra -- Ważona wersja odległości Manhattan, stosowana dla danych o zliczeniach (np. o rozkładzie zbliżonym do Poissona), uporządkowanych rankingach itp. $$ \sum_{i=1}^n \cfrac{x_i-y_i}{|x_i|+|y_i|} $$
     \item Odległość Hamminga -- Liczba różnych współrzędnych. Często wykorzystywana dla ciągów cyfr lub liter, ale też dla binarnych wektorów. 

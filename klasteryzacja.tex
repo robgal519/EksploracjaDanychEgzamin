@@ -1,1 +1,119 @@
 \section{Klasteryzacja}
+Klasteryzacja to określenie grup danych jak najbardziej podobnych do siebie wewnątrz grupy danych i jak najbardziej odmiennych od elementów z innych grup.
+
+\textbf{Cechy}
+\begin{itemize}
+    \item Elementy nieliczne oraz peryferia klastrów można potraktować jako elementy nietypowe
+    \item Można redukować liczebność i wymiarowość zbioru danych. 
+\end{itemize}
+
+\textbf{Zastosowanie}
+\begin{itemize}
+    \item marketing
+    \item wybór reprezentantów
+    \item typowe uszkodzenia urządzeń
+\end{itemize}
+
+\note{opis z wiki}
+\textbf{Grupowanie, analiza skupień, klasteryzacja}
+
+Analiza skupień jest metodą tzw. klasyfikacji bez nadzoru. Jest to metoda dokonująca grupowania elementów we względnie jednorodne klasy. Podstawą grupowania w większości algorytmów jest podobieństwo pomiędzy elementami wyrażone przy pomocy funkcji ( metryki)  podobieństwa.
+
+Poprzez grupowanie można również rozwiązać problemy z gatunku odkrywania struktur danych  oraz dokonywanie uogólnienia.
+
+Wybrane cele dokonywania grupowania są następujące:
+\begin{itemize}
+    \item uzyskanie jednorodnych przedmiotów badania, ułatwiających wyodrębnienie ich zasadniczych cech
+    \item zredukowanie dużej liczby danych pierwotnych do kilku podstawowych kategorii, które mogą być traktowane jako przedmioty dalszej analizy
+    \item zmniejszenie nakładu pracy i czasu znaliz, których przedmiotem będzie uzyskanie klasyfikacji obiektów typowych
+    \item odkrycie nieznanej struktury zanalizowanych danych
+    \item porównanie obiektów wielocechowych
+\end{itemize}
+
+
+\subsection{Metody}
+\subsubsection{K-średnich}
+Zakładamy żądaną liczbę klastrów oznaczoną przez $k$, ze zbioru danych $x_1, x_2, ... , x_n$.
+
+Losowo wybieramy $k$ elementów traktując je początkowo jako środki klastrów. Przypisujemy elementy do najbliższego ze środków po czym ponownie wyznaczamy środki klastrów na podstawie średnich położeń punktów.
+Cały algorytm powtarzamy dopóki następuje zmiana bądź kończymy po zadanej liczbie kroków.
+
+\begin{minipage}[t]{0.49\textwidth}
+\begin{center}
+    \textbf{\textcolor{green}{Zalety}}    
+\end{center}
+\begin{itemize}
+    \item relokacja - w innych nie są możliwe zmiany do in   tutaj można zmieniać
+    \item Szybki
+    \item Efektywny
+    \item dostaje się cennych reprezentantów i liczbę mówiącą ile reprezentuje punktów
+\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}  
+\begin{center}
+    \textbf{\textcolor{red}{Wady}}
+\end{center}
+\begin{itemize}
+    \item Bardzo wrażliwa na elementy odosobnione - najlepiej wcześniej usunąć.
+    \item nie ma nic wizualnego opisującego struktury, dostajemy jedynie wynik klasteryzacji.
+    \item Nie radzi sobie z zbiorami w kształcie $C$, preferuje kuliste zbiory.
+\end{itemize}    
+\end{minipage}
+
+\subsubsection{K-medoidów}
+losowo wybierane są k punktów które stają się centrami klastrów, i podobnie jak w metodzie k-średnich tworzy się w oparciu o te punkty pierwszy zestaw klastrów.
+Zamiast średniego położenia obliczana jest suma odległości do pozostałych punktów wewnątrz danego klastra. następnie za centrum klastra wyznaczany jest punkt o najmniejszej sumie (w ramach rozpatrywanego klastra). Po wyznaczeniu nowych punktów centralnych ponownie tworzy się klastry przypisując punkty do najbliższych klastrów.
+
+Algorytm kończy się, kiedy klastry przestają się zmieniać pomiędzy iteracjami.
+
+\begin{minipage}[t]{0.49\textwidth}
+    \begin{center}
+        \textbf{\textcolor{green}{Zalety}}    
+    \end{center}
+    \begin{itemize}
+        \item relokacja - w innych nie są możliwe zmiany do in   tutaj można zmieniać
+        \item Dla dowolnych danych.
+        \item Nie ma problemów średniej (pies $+$ człowiek $=$ średnio $3$ nogi), a więc reprezentant klastra nie jest abstrakcyjny.
+    \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}  
+    \begin{center}
+        \textbf{\textcolor{red}{Wady}}
+    \end{center}
+    \begin{itemize}
+        \item Wzrost złożoności obliczeniowej.
+        \item Wolniejsza od k-średnich.
+        \item Również nie radzi sobie ze zbiorami typu C.
+    \end{itemize}    
+    \end{minipage}
+
+\subsubsection{grupowanie hierarchiczne}
+
+Zakłądamy żądaną liczbę klastrów. Każdy z elementów zbioru danych traktujemy jako osobny klaster. Najpierw łączymy dwa najbardziej podobne elementy, a następnie łączymy dwa najbliższe klastry, aż do osiągnięcia założonej liczby.
+
+
+istnieją dwie możliwości grupowania hierarchicznego:
+\begin{itemize}
+    \item Metody aglomeracyjne -- każdy element na początku tworzy klaster, klastry są łączone do osiągnięcia założonej liczby klastrów
+    \item Metody deglomeracyjne -- początkowo wszystkie elementy znajdują się w jednym klastrze, który następnie jest dzielony na mniejsze i bardziej jednorodne. Podziały wykonywane są rekursywnie.
+\end{itemize}
+
+Algorytmy hierarchiczne są wymagające obliczeniowo ($O(n^3)$) oraz pamięciowo ($O(n^2)$).
+
+Aby określić (nie) podobieństwo elementów stosuje się metryki. Wybór odpowiedniej metryki jest jednym z najważniejszych aspektów pracy algorytmu. 
+
+Metryki opisane są w \textbf{rozdziale \ref{sec:metryki}}
+
+\textbf{Metody łączenia} określają jak definiowana jest odkległośc między dwoma klastrami. Ważne jest aby w danym eksperymencie wypróbowaćkilka metod łączenia  oraz porónać wyniki. 
+
+Najczęściej występujące metody łączenia:
+
+\begin{itemize}
+    \item \textbf{Pojedyncze połączenie} ( najbliższe sąsiedztwo) \\ Odległość między dwoma klasami jest minimalną odległością między pojedyńczą obserwacją w jednym klastrze a obserwacją w innym klastrze. \textit{Sprawdza się gdy klastry są wyraźnie oddzielone.}
+    \item \textbf{Kompletne połączenie} ( najdalsze sąsiedztwo) \\ Odległość między dwoma klastrami jest maksymalną odległością między obserwacją w jednym klstrze a obserwacją w innym. \textit{Może być wrażliwe na występowanie outlinerów}
+    \item \textbf{Średnie połączenie} ( średnie sąsiedztwo) \\ odległość między dwoma klastrami jest średnią odległośćią między obserwqacją w jednym klastrze a obserwacją w innym klastrze.\textit{Zalecane gdy wzrost jest liniowy, przy logarytmicznym trzeba uważać}
+    \item \textbf{Połączenie centroidalne}\\ Odległość między dwoma klastrami jest odległością pomiędzy centroidami klastra
+    \item \textbf{Połączenie medianowe}\\ Odległość między dwoma klastrami jest medianą odległości między obserwacją w jednym klsastrze a obserwacją w innym. \textit{Zmniejsza wpływ outlinerów}
+    \item \textbf{Połączeni Ward'a} \\ Odległośc między dwoma klastrami jest sumą kwadratów odchyleń od punktów do centroidów. Ten sposób dąży do zminimalizowaniasumy kwadratów wewnątrz klastra.
+    \item \textbf{Połączenie McQuitty'ego} \\ Gdy dwa klastry $A$ i $B$ zostaną połączone, odległość do nowego klastra $C$ jest średnią  odległości $A$ i $B$ do $C$. W ten sposób odległość zależy od kombinacji klastrów zamiast indywidualnych obserwacji w klastrach.
+\end{itemize}
